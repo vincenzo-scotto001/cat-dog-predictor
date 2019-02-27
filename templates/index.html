@@ -1,16 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
+    <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous">
+  </script>
 </head>
+<style>
+    body {
+        background-color: oldlace;}
+        h1{
+            color:orangered;
+            font-family: sans-serif;
+            font-size: 50px;
+            border: 2px solid black;
+            display: inline-block;
+            padding: 30px;
+            margin-top: 25px;}
+        h2{
+            font-weight:bold;
+            font-family: cursive;
+            text-align: center;
+        }
+
+    button {
+        background-color: crimson;
+        font-family: sans-serif;
+        display: block;
+        margin-top: 10px;}
+</style>
+
 <body>
-    <form action="{{url_for('handledata')}}" method = "post" enctype = "multipart/form-data">
-        <input type="file" name = "file" accept = "image/*" multiple>
+    <h2>
+        Cat or Dog Predictor
+    </h2>
+    <form action="{{url_for('handledata')}}" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" accept="image/*" multiple onchange="readURL(this);">
         <button>Submit</button>
-        <h1>
-            {{prediction}}
-        </h1>
+    
+    <img id = 'blah' src="#" alt="">
+
+    
+    <h1>
+        {{prediction}}
+    </h1>
     </form>
 </body>
+<script>
+    function readURL(input){
+        if(input.files && input.files[0]){
+            var reader = new FileReader();
+            reader.onload = function(e){
+                $('#blah')
+                    .attr('src',e.target.result)
+                    .width(200)
+                    .height(200);
+
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+
+    }
+    </script>
+
 </html>

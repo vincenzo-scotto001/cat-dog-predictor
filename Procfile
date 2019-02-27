@@ -1,1 +1,1 @@
-web: python cnn_server.python
+web: python cnn_server.py
